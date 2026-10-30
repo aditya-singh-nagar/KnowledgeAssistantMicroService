@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/MicroserviceProjectTwo/MicroserviceProjectTwo/pom.xml" />
         <option value="$PROJECT_DIR$/MicroserviceProjectOne/pom.xml" />
         <option value="$PROJECT_DIR$/MicroserviceProjectTwo/pom.xml" />
+        <option value="$PROJECT_DIR$/UserManagementService/pom.xml" />
+        <option value="$PROJECT_DIR$/AuthService/pom.xml" />
       </list>
     </option>
   </component>

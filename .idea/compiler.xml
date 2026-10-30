@@ -20,25 +20,25 @@
         </processorPath>
         <module name="DocumentService" />
       </profile>
-      <profile name="Annotation profile for MicroserviceProjectTwo" enabled="true">
+      <profile name="Annotation profile for AuthService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
-        <module name="MicroserviceProjectTwo" />
-        <module name="MicroserviceProjectOne" />
+        <module name="UserManagementService" />
+        <module name="AuthService" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ApiGateway" options="-parameters" />
+      <module name="AuthService" options="-parameters" />
       <module name="DocumentService" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
-      <module name="MicroserviceProjectOne" options="-parameters" />
-      <module name="MicroserviceProjectTwo" options="-parameters" />
+      <module name="UserManagementService" options="-parameters" />
     </option>
   </component>
 </project>
