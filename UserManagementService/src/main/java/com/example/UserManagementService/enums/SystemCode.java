@@ -3,6 +3,11 @@ package com.example.UserManagementService.enums;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 @Getter
 public enum SystemCode {
 
@@ -46,5 +51,24 @@ public enum SystemCode {
         this.code = code;
         this.defaultMessage = defaultMessage;
         this.httpStatus = httpStatus;
+    }
+
+    private static final Map<String, SystemCode> CODE_MAP =
+            Arrays.stream(values())
+                    .collect(Collectors.toMap(
+                            SystemCode::getCode,
+                            Function.identity()
+                    ));
+
+    public static SystemCode fromCode(String code) {
+        SystemCode systemCode = CODE_MAP.get(code);
+
+        if (systemCode == null) {
+            throw new IllegalArgumentException(
+                    "Invalid system code: " + code
+            );
+        }
+
+        return systemCode;
     }
 }

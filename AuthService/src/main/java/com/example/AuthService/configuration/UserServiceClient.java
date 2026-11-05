@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "UserManagementService"
 //        , url = "http://localhost:8083"
+        ,configuration = FeignClientConfig.class
 )
 public interface UserServiceClient {
 

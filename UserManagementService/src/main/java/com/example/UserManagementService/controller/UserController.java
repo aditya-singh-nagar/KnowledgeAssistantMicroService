@@ -35,9 +35,18 @@ public class UserController {
     }
 
     @GetMapping("/get/{userId}")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','MANAGER','PUBLIC')")
     public ResponseEntity<RegisterResponseDto> getUserByUSerId(@PathVariable int userId){
 
         return  new ResponseEntity<>(userServices.getUserByUserId(userId), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/get/email/{email}")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','MANAGER','PUBLIC')")
+    public ResponseEntity<RegisterResponseDto> getUserByEmail( @PathVariable String email){
+
+        return new  ResponseEntity<>(userServices.getUserByEmail(email), HttpStatus.OK);
     }
 
 

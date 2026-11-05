@@ -103,6 +103,12 @@ public class UserServices {
             return requestMapper.registerResponseMapper(user);
         }
 
+        public RegisterResponseDto getUserByEmail(String email) {
+
+            User user = userRepository.findByEmail(email).orElseThrow(()-> new NotFound(SystemCode.AUTH_USER_NOT_FOUND, "User not found with email: " + email));
+            return requestMapper.registerResponseMapper(user);
+        }
+
 
 
 

@@ -1,0 +1,30 @@
+Retrieval-Augmented Generation (RAG) is an AI framework that improves Large Language Models (LLMs) by fetching real-time or domain-specific facts from external knowledge bases before generating a response. It links static models to live data, cutting down fake answers and avoiding costly retraining.
+
+How RAG Works (What It Uses)
+
+RAG combines document search and text creation using key technical pieces:
+• External Knowledge Base: Internal files, PDFs, wikis, or web pages that hold up-to-date facts.
+• Embedding Model: A tool that turns text documents and user queries into numbers called vector embeddings.
+• Vector Database: A special database (such as Pinecone, Milvus, or Qdrant) that stores and matches embeddings via similarity search.
+• LLM Engine: The base generative model (such as GPT or Claude) that reads the retrieved text and writes a natural reply.
+
+Key Features
+
+• Dynamic Information Retrieval: Pulls the newest facts on demand instead of relying on a frozen training date.
+• Grounding & Source Attribution: Connects answers to specific reference documents so users can check the facts.
+• Modular Updates: Allows data to be added, changed, or deleted in the vector store without retraining the core AI model.
+• Private Data Integration: Lets companies plug in confidential or internal records safely.
+
+Advantages
+
+• Fewer Hallucinations: Grounds responses in verified text to stop the model from making up false details.
+• Cost-Effective: Avoids expensive and slow full-model fine-tuning or retraining cycles.
+• Transparent Citations: Provides clear links or references to the source material.
+• Current Awareness: Handles live news, recent policies, and fast-changing domain data effortlessly.
+
+Disadvantages
+
+• Context Fragmentation: Breaking long texts into smaller chunks can cut off important logical connections.
+• Retrieval Errors ("Garbage In, Garbage Out"): If the search step grabs slightly off-topic or biased chunks, the LLM will base its answer on bad data.
+• Latency Overhead: Adding a search step before generation makes each response take slightly longer.
+• Complex Setup: Managing chunk sizes, embedding models, and search index tuning requires heavy engineering effort

@@ -1,0 +1,9 @@
+package com.example.DocumentService.enums;
+
+public enum AccountStatus {
+
+  PENDING_APPROVAL,
+  ACTIVE,
+  REJECTED,
+  SUSPENDED
+}

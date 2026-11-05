@@ -8,19 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
+        <module name="RagService" />
         <module name="ApiGateway" />
       </profile>
-      <profile name="Annotation profile for DocumentService" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
-        </processorPath>
-        <module name="DocumentService" />
-      </profile>
-      <profile name="Annotation profile for AuthService" enabled="true">
+      <profile name="Annotation profile for UserManagementService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -28,6 +19,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="UserManagementService" />
+        <module name="DocumentService" />
         <module name="AuthService" />
       </profile>
     </annotationProcessing>
@@ -38,6 +30,7 @@
       <module name="AuthService" options="-parameters" />
       <module name="DocumentService" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
+      <module name="RagService" options="-parameters" />
       <module name="UserManagementService" options="-parameters" />
     </option>
   </component>
