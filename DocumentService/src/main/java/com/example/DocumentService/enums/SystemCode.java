@@ -19,6 +19,7 @@ public enum SystemCode {
     DOC_ACCESS_DENIED("DOC_005", "You do not have permission to access this document.", HttpStatus.FORBIDDEN),
     DOC_INVALID_ACCESS_LEVEL("DOC_006", "Invalid document access level specified.", HttpStatus.BAD_REQUEST),
     DOC_CONVERSION_FAILED("DOC_007", "Document format conversion failed.", HttpStatus.INTERNAL_SERVER_ERROR),
+    DOC_PROCESSING_FAILED("DOC_008", "Document format conversion failed.", HttpStatus.INTERNAL_SERVER_ERROR),
 
     // === Authentication & User (AUTH_001 -> AUTH_099) ===
     AUTH_INVALID_CREDENTIALS("AUTH_001", "Invalid email or password.", HttpStatus.UNAUTHORIZED),
@@ -41,7 +42,17 @@ public enum SystemCode {
     SYS_INTERNAL_ERROR("SYS_001", "Internal server error occurred.", HttpStatus.INTERNAL_SERVER_ERROR),
     SYS_NOT_FOUND("SYS_002", "Requested resource not found.", HttpStatus.NOT_FOUND),
     SYS_BAD_REQUEST("SYS_003", "Bad request or invalid parameters provided.", HttpStatus.BAD_REQUEST),
-    SYS_VALIDATION_FAILED("SYS_004", "Input validation failed.", HttpStatus.BAD_REQUEST);
+    SYS_VALIDATION_FAILED("SYS_004", "Input validation failed.", HttpStatus.BAD_REQUEST),
+    SYS_DOWNSTREAM_FAILURE(
+            "SYS_005",
+            "A dependent service failed to process the request.",
+            HttpStatus.BAD_GATEWAY
+    ),
+    SYS_SERVICE_UNAVAILABLE(
+            "SYS_006",
+            "A dependent service is temporarily unavailable.",
+            HttpStatus.SERVICE_UNAVAILABLE
+    );
 
     private final String code;
     private final String defaultMessage;

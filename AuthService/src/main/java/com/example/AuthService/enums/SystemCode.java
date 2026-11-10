@@ -41,7 +41,19 @@ public enum SystemCode {
     SYS_INTERNAL_ERROR("SYS_001", "Internal server error occurred.", HttpStatus.INTERNAL_SERVER_ERROR),
     SYS_NOT_FOUND("SYS_002", "Requested resource not found.", HttpStatus.NOT_FOUND),
     SYS_BAD_REQUEST("SYS_003", "Bad request or invalid parameters provided.", HttpStatus.BAD_REQUEST),
-    SYS_VALIDATION_FAILED("SYS_004", "Input validation failed.", HttpStatus.BAD_REQUEST);
+    SYS_VALIDATION_FAILED("SYS_004", "Input validation failed.", HttpStatus.BAD_REQUEST) ,
+    // Common / System
+
+    SYS_DOWNSTREAM_FAILURE(
+    "SYS_005",
+            "A dependent service failed to process the request.",
+    HttpStatus.BAD_GATEWAY
+    ),
+    SYS_SERVICE_UNAVAILABLE(
+    "SYS_006",
+            "A dependent service is temporarily unavailable.",
+    HttpStatus.SERVICE_UNAVAILABLE
+    );
 
     private final String code;
     private final String defaultMessage;

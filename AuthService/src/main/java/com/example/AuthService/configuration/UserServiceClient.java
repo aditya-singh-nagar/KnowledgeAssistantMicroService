@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "UserManagementService"
-//        , url = "http://localhost:8083"
+        , url = "http://localhost:8083"
         ,configuration = FeignClientConfig.class
 )
 public interface UserServiceClient {
@@ -23,7 +23,7 @@ public interface UserServiceClient {
      ResponseEntity<RegisterResponseDto>  addUser (@RequestBody RegisterRequestDto registerRequestDto);
 
     @PostMapping("/api/user/login")
-    ResponseEntity<RegisterResponseDto>  checkUser (@RequestBody LoginDto loginDto);
+    ResponseEntity<RegisterResponseDto>  checkUser ( @RequestBody LoginDto loginDto);
 
     @GetMapping("/api/user/get/{userId}")
     ResponseEntity<RegisterResponseDto> getUser(@PathVariable("userId") int userId);

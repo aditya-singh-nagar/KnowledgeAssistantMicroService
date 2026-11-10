@@ -35,8 +35,6 @@ public class AuthService {
 
         ResponseEntity<RegisterResponseDto> entity = userServiceClient.checkUser(loginDto);
 
-        if(entity.getStatusCode().is2xxSuccessful()){
-
             RegisterResponseDto response  = entity.getBody();
             RefreshToken refreshToken = refreshTokenService.createToken(response.getId());
             String token = refreshToken.getToken();
@@ -45,10 +43,8 @@ public class AuthService {
 
             return  new AuthResponseDto(accessToken,token) ;
 
-        }
-        else {
-            throw new AppException(SystemCode.SYS_BAD_REQUEST, "User  is already rejected.");
-        }
+
+
 
     }
 
@@ -58,23 +54,13 @@ public class AuthService {
         refreshTokenService.verifyExpiration(refreshToken);
         ResponseEntity<RegisterResponseDto> entity = userServiceClient.getUser(refreshToken.getUserId());
 
-        RegisterResponseDto response;
-        if (entity.getStatusCode().is2xxSuccessful()) {
-
-            response = entity.getBody();
+        RegisterResponseDto response = entity.getBody();
 
             String token = refreshToken.getToken();
             String role = response.getRoles().stream().findFirst().get().substring(5);
             String accessToken = accessTokenService.generateAccessToken(response.getUsername(), response.getEmail(), role);
 
             return new AuthResponseDto(accessToken, token);
-
-        } else {
-
-
-
-            throw new AppException(SystemCode.SYS_BAD_REQUEST, "User  is already rejected.");
-        }
 
 
     }

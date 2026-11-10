@@ -47,6 +47,7 @@ public class DocumentService {
 
 
 
+    @Transactional
     public DocumentUploadResponse uploadDocument(
             MultipartFile file , String email , DocumentAcessLevel acessLevel ,String role) {
 
@@ -113,12 +114,9 @@ public class DocumentService {
 
             ResponseEntity<RegisterResponseDto> entity = userServiceClient.getUserByEmail(email) ;
                 RegisterResponseDto registerResponseDto = entity.getBody() ;
-
-            if (entity.getStatusCode().is2xxSuccessful()) {
                 document.setUploadBy(registerResponseDto.getId());
-            }else {
-                throw new AppException(SystemCode.AUTH_USER_NOT_FOUND , "user not found");
-            }
+
+
 
 
             document.setUploadBy(registerResponseDto.getId());
@@ -171,21 +169,16 @@ public class DocumentService {
         documentResponse.setChunks(chunks);
 
        ResponseEntity<String> responseEntity = ragServiceClient.uploadChunks(documentResponse);
-       if(responseEntity.getStatusCode().is2xxSuccessful()){
+
 
            return new DocumentUploadResponse(
                    document.getId(),
                    document.getFileName(),
                    document.isProcessed(),
                    "Document uploaded and processed successfully",
-                   chunks
+                   chunks );
 
-           );
-       }
-       else {
 
-           throw new AppException(SystemCode.RAG_SERVICE_ERROR , "Failed to save Document chunks ") ;
-       }
 
 
 
@@ -210,9 +203,9 @@ public class DocumentService {
                 }
             }
 
-            throw new RuntimeException(
-                    "Document processing failed",
-                    e
+            throw new AppException(
+                    SystemCode.DOC_PROCESSING_FAILED ,
+                    "Document processing failed"
             );
         }
     }
@@ -363,9 +356,7 @@ public class DocumentService {
 
        ResponseEntity<String> entity = ragServiceClient.deleteDocument(documentId);
 
-       if (!entity.getStatusCode().is2xxSuccessful()) {
-           throw new AppException(SystemCode.DOC_NOT_FOUND, "Document not found with the given ID");
-       }
+
 
     }
 
